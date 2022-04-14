@@ -1,0 +1,37 @@
+extends layout
+
+block body
+  .container.mt-3
+    .jumbotron
+      h1(style='color:blue;') Ingrese datos
+      br
+      form(action='/productos' method='post')
+        .form-group
+          label(for='nombre')
+            b Nombre
+          input#nombre.form-control(type='text' name='nombre' required='')
+        .form-group
+          label(for='apellido')
+            b Precio
+          input#apellido.form-control(type='number' name='precio' required='')
+        .form-group
+          label(for='edad')
+            b Foto URL
+          input#edad.form-control(type='text' name='url' required='')
+        button.btn.btn-success.mt-3.mb-5(type='submit') Enviar
+
+      if productos.length > 0
+        h2(style='color:crimson;') Historial
+          .table-responsive
+            table.table.table-dark
+              tr(style='color: yellow;')
+                th Nombre
+                th Precio
+                th Foto URL
+              each val in productos
+                tr
+                  td= val.nombre
+                  td= val.precio
+                  td= val.url
+      else
+        h3.alert.alert-danger no se encontraron datos
